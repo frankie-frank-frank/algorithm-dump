@@ -6,7 +6,7 @@ const ReadFile = (fileName) => {
     T3 = 0,
     T4 = 0;
   const line = lines[0];
-  var fline = line.split(" ");
+  let fline = line.split(" ");
   aPizza = parseInt(fline[0]);
   T2 = parseInt(fline[1]);
   T3 = parseInt(fline[2]);
