@@ -40,6 +40,7 @@ class Console {
     }
 }
 
-const newConsole = new Console(process.stdout, process.stderr)
-newConsole.log("hi", "you", 3)
+//TEST
+const console = new Console(process.stdout, process.stderr)
+console.log("hi", "you", 3)
 
