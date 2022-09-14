@@ -9,7 +9,7 @@ class TrieNode {
   constructor() {
     this.keys = new Map();
     this.end = false;
-  }  
+  }
 
   setEnd() {
     this.end = true;
@@ -32,7 +32,7 @@ class Trie {
       node.setEnd();
       return;
     } else if (!node.keys.has(input[0])) {
-      node.keys.set(input[0], new Node());
+      node.keys.set(input[0], new TrieNode());
       return this.addWord(input.substring(1), node.keys.get(input[0]));
     } else {
       return this.addWord(input.substring(1), node.keys.get(input[0]));
@@ -55,35 +55,34 @@ class Trie {
 
   printWord() {
     let words = new Array();
-    let search = function(node, string: String){
-        if(node.keys.size != 0){
-            for(let letter of node.keys.keys()){
-                search(node.keys.get(letter), string.concat(letter));
-            }
-            if(node.isEnd()){
-                words.push(string)
-            }
-            
-        }else{
-            string.length > 0 ? words.push(string) : undefined;
-            return;
+    let search = function (node, string: String) {
+      if (node.keys.size != 0) {
+        for (let letter of node.keys.keys()) {
+          search(node.keys.get(letter), string.concat(letter));
         }
-    }
+        if (node.isEnd()) {
+          words.push(string);
+        }
+      } else {
+        string.length > 0 ? words.push(string) : undefined;
+        return;
+      }
+    };
     search(this.root, new String());
     return words.length > 0 ? words : null;
-  } 
+  }
 }
 
 let myTrie = new Trie();
-myTrie.addWord("ball")
-myTrie.addWord("bat")
-myTrie.addWord("doll")
-myTrie.addWord("dork")
-myTrie.addWord("do")
-myTrie.addWord("dorm")
-myTrie.addWord("send")
-myTrie.addWord("sense")
-console.log(myTrie.isWord("doll"))
-console.log(myTrie.isWord("dor"))
-console.log(myTrie.isWord("dorf"))
-console.log(myTrie.printWord())
+myTrie.addWord("ball");
+myTrie.addWord("bat");
+myTrie.addWord("doll");
+myTrie.addWord("dork");
+myTrie.addWord("do");
+myTrie.addWord("dorm");
+myTrie.addWord("send");
+myTrie.addWord("sense");
+console.log(myTrie.isWord("doll"));
+console.log(myTrie.isWord("dor"));
+console.log(myTrie.isWord("dorf"));
+console.log(myTrie.printWord());

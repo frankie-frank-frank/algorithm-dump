@@ -1,32 +1,5 @@
-// import { Console } from 'console'
-// import fs from 'fs'
-// import process from 'process'
-// import { Stream } from 'stream'
-// const console = new Console({stdout: process.stdout.write(...args), stderr: process.stderr})
-
-// /*
-//     test cases 1:
-// */
-// console.log("hey")
-
-/*
-    alternatives to console.log
-*/
-
 import process from 'process'
 import util from 'util'
-// console.log = function (d) {
-//     process.stdout.write(d + " \"" + typeof(d) + "\"" + '\n' );
-//   };
-
-// /*
-//     test cases:
-// */
-// console.log("hey", 33) //hey string
-// console.log(22) //22 number
-// console.log(true) //true boolean
-
-//last test case: console.log("hey", 22)
 
 class Console {
     constructor(stdout, stderr) {
@@ -53,15 +26,20 @@ class Console {
 
         // bind the prototype functions to this Console instance
         let keys = Object.keys(Console.prototype);
-        for (let v = 0; v < keys.length; v++) {
-            let k = keys[v];
+        for (const element of keys) {
+            let k = element;
             this[k] = this[k].bind(this);
         }
     }
     log() {
-        this._stdout.write(util.format.apply(this, arguments) + '\n');
+        const argArray = [...arguments]
+        argArray.forEach(item => {
+            const val = item + " " + typeof (item) + "\n"
+            this._stdout.write(val)
+        })
     }
 }
-  
+
 const newConsole = new Console(process.stdout, process.stderr)
-newConsole.log("hi", "you")
+newConsole.log("hi", "you", 3)
+
