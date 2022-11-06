@@ -1,4 +1,4 @@
-const fs = require("fs")
+import { appendFileSync, readFile } from "fs";
 
 
 /* WRITE TO FILE */
@@ -30,7 +30,7 @@ const fs = require("fs")
 /* APPEND TO FILE */
 console.log("Appending to file");
 [...Array(10).keys()].forEach(item => {
-    fs.appendFileSync('outfile.txt', `${item} data to append` + "\n", function (err) {
+    appendFileSync('outfile.txt', `${item} data to append` + "\n", function (err) {
         if (err) throw err;
         console.log('Saved!');
       })
@@ -39,7 +39,7 @@ console.log("Appending to file");
 
 /*READ BY LINE FROM FILE */
 console.log("Reading from a file")
-fs.readFile("outfile.txt", function (err, data) {
+readFile("outfile.txt", function (err, data) {
     if (err) {
       return console.error(err);
     }
