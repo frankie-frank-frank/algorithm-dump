@@ -39,3 +39,17 @@ const listSet11 = listSet10.addValue(new ListNode(3, null))
 console.log(mergeTwoLists(listSet1, listSet1))
 */
 
+var mergeTwoLists = function(list1, list2) {
+    if (list1 == null) return list2;
+    if (list2 == null) return list1;
+    console.log(list1)
+
+    if (list1.val < list2.val) {
+        list1.next = mergeTwoLists(list1.next, list2);
+        return list1;
+    }
+    else {
+        list2.next = mergeTwoLists(list1, list2.next);
+        return list2;
+    }
+};

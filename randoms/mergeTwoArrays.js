@@ -17,4 +17,4 @@ const forArrays = (list1, list2) => {
     return finalArr;
 }
 
-console.log(forArrays([1,2,4], [1,3,4]))
+console.log(forArrays([1,2,4,10,12,14,18], [1,3,4,20]))
