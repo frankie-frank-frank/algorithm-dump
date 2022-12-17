@@ -1,0 +1,36 @@
+default dfs: iter 1
+const preorder = function(root, ans=[]) {
+    if (!root) return ans
+    ans.push(root.val)
+    for (let child of root.children){
+        preorder(child, ans)
+    }
+    return ans
+};
+
+dfs iter 2:
+var isValidBST = function(root) {
+    return helper(root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
+}
+var helper = function(currNode, min, max) {
+    if(!currNode) return true;
+    if(currNode.val <= min || currNode.val >= max) return false
+    return helper(currNode.left, min, currNode.val) && helper(currNode.right, currNode.val, max);
+}
+
+default bfs:
+function(root) {
+    if(!root) return;
+    const queue = [root];
+    const finalArr = []
+    while(queue.length > 0){
+        const currNode = queue.shift()
+        finalArr.push(currNode.val)
+        if(currNode.children.length > 0){
+            for(let nodeItem of currNode.children){
+                queue.push(nodeItem)
+            }
+        }
+    }
+    return finalArr;
+};
