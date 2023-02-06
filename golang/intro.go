@@ -6,6 +6,11 @@ import (
 	// "math"
 )
 
+//simple add function:
+func add(x int, y int) int {
+	return x + y
+}
+
 func main(){
 	// basic variable declaration
 	var i int = 42
@@ -136,5 +141,8 @@ func main(){
 	arrBeg := []int{1,2,3,4,5}
 	arrEnd := append(arrBeg[:len(arrBeg)/2], arrBeg[len(arrBeg)/2+1:]...)
 	fmt.Printf("%v", arrEnd)
-}
 
+	//variable with initializers
+	var c, python, java = true, false, "no!"
+	fmt.Println(i, j, c, python, java)
+}
