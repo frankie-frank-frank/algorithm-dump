@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func main() {
@@ -14,6 +15,8 @@ func main() {
 	// 	fmt.Println((pop))
 	// }
 
+
+	//golang does not need a break for any switch case
 	var i interface{} = [3]int{}
 	switch i.(type) {
 	case int: 
@@ -26,5 +29,17 @@ func main() {
 		fmt.Println("i is [3]int")
 	default:
 		fmt.Println("i is another type")
+	}
+
+	//Switch without a condition is the same as switch true.
+	//This construct can be a clean way to write long if-then-else chains.
+	t := time.Now()
+	switch {
+	case t.Hour() < 12:
+		fmt.Println("Good morning!")
+	case t.Hour() < 17:
+		fmt.Println("Good afternoon.")
+	default:
+		fmt.Println("Good evening.")
 	}
 }

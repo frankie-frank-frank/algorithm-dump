@@ -23,4 +23,6 @@ func main() {
 	a := "start"
 	defer fmt.Println( a) //even though defer runs after function ends, it prints out "start" since this is the current value when a is set
 	a = "end"
+
+	//Deferred function calls are pushed onto a stack. When a function returns, its deferred calls are executed in last-in-first-out order.
 }
