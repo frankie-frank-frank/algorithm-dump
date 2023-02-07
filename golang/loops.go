@@ -71,4 +71,11 @@ func main() {
 	//to print only keys: for k := range s {}
 	//to print only values: for _, v := range s {}
 	*/
+
+	//actual while loop in GoLang
+	/*
+	for ; sum < 1000; {
+		sum += sum
+	}
+	*/
 }
