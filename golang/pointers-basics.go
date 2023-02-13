@@ -2,6 +2,11 @@ package main
 
 import ( "fmt" )
 
+/*
+	USE POINTERS WHEN YOU DO NOT WANT TO COPY THE ENTIRE UNDERLYING DATA
+	USE IT CAREFULLY THOUGH, SINCE YOU CAN EASILY MUTATE THE UNDERLYING VALUE
+*/
+
 func main() {
 	var a int = 42
 	var b *int = &a //points to variable 'a' by reference so it updates whenever a updates

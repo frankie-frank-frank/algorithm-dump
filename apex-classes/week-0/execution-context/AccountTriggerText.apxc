@@ -1,0 +1,18 @@
+@isTest
+public class AccountTriggerTest {
+    @isTest static void TestCreateNewCAAccountsInBulk(){
+        //create CA accounts
+        List<Account> accts = new List<Account>();
+        for(Integer i=0; i < 200; i++) {
+            Account acct = new Account(Name='Test Account ' + i, BillingState='CA');
+            accts.add(acct);
+        }              
+        Test.startTest();
+        //bulk insert
+        insert accts;                               
+        Test.stopTest();
+        // Verify that 200 new CA ShippingState Accounts were inserted
+        List<Account> verifyAccts = [SELECT Id FROM Account WHERE ShippingState='CA'];
+        System.assertEquals(200, verifyAccts.size());    
+    }
+}
