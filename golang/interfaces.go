@@ -43,3 +43,10 @@ func (ic *IntCounter) Increment() int {
 	*ic++;
 	return int(*ic)
 }
+
+//additional notes from fc:
+/*
+	- creating a struct with multiple interfaces
+	- type casting and comma-okay syntax
+	- additional benefits of empty interfaces 
+*/
