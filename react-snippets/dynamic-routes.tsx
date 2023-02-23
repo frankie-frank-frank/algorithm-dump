@@ -4,6 +4,8 @@
         - Add an index file to it
         - add a file with name of [route_param].ts
         - the file above will render content dynamically
+        - if you request for a specific file within the central folder ie. a file which you
+          defined other than the [route_param].ts or index.ts, next js will match that first 
 */
 
 //import useRouter as a dependency of this file
