@@ -7,7 +7,23 @@ import (
 
 var wg = sync.WaitGroup{}
 
-//simple go channel with 
+//simple channels:
+/*
+	func main(){
+		ch := make(chan string)
+
+		//write to channel:
+		go func() {
+			ch <- "data"
+		}()
+
+		//read from channel:
+		msg := <- ch
+		fmt.println(msg)
+	}
+*/
+
+//simple specialized channels
 func main() {
 	ch := make(chan int)
 	wg.Add(2)
