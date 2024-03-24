@@ -1,0 +1,14 @@
+{
+    "name": "algorithm-dump",
+    "version": "0.0.0",
+    "description": "Join me as I tour the world of algorithms",
+    "type": "module",
+    "scripts": {
+      "test:geek": "node geeks-for-geeks/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {}, 
+    "devDependencies": {} 
+  }
