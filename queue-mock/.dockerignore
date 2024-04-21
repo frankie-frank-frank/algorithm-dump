@@ -1,0 +1,14 @@
+node_modules
+src/archive
+src/test
+.git
+.gitignore
+.DS_Store
+README.md
+.vscode
+LICENSE
+.cache
+*.csv
+.cache
+asset-replace-for-*/
+tmp

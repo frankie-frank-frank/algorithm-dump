@@ -1,0 +1,86 @@
+version: '3'
+networks:
+  ssbot:
+    driver: bridge
+
+services:
+  ssbotmq:
+    container_name: ssbotmq
+    image: "rabbitmq:3-management"
+    environment:
+      - MQ_USER=heatmap
+      - MQ_PASS=94wwQ<3WrO+K
+    ports:
+      - "15700:15672"
+      - "5673:5672"
+    networks:
+      - ssbot
+
+  node-exporter:
+      image: prom/node-exporter:latest
+      container_name: node-exporter
+      restart: unless-stopped
+      ports:
+        - 9100:9100
+      networks:
+        - ssbot
+              
+  producer:
+    container_name: producer
+    depends_on:
+      - ssbotmq
+    build:
+      context: .
+      dockerfile: Dockerfile.producer
+    image: ssbot:latest
+    command: ["bash", "ssbotmq:5672", "--", "node", "producer.js", "producer"]
+    restart: always
+    env_file:
+      - ./.env
+    networks:
+      - ssbot
+
+  cs1:
+    container_name: cs1
+    depends_on:
+      - ssbotmq
+    build:
+      context: .
+      dockerfile: Dockerfile.consumer
+    image: ssbot:latest
+    command: [ "bash", "ssbotmq:5672", "--", "node", "consumer.js", "consumer1i5" ]
+    restart: always
+    env_file:
+      - ./.env
+    networks:
+      - ssbot
+
+  cs2:
+    container_name: cs2
+    depends_on:
+      - ssbotmq
+    build:
+      context: .
+      dockerfile: Dockerfile.consumer
+    image: ssbot:latest
+    command: [ "bash", "ssbotmq:5672", "--", "node", "consumer.js", "consumer2i5" ]
+    restart: always
+    env_file:
+      - ./.env
+    networks:
+      - ssbot
+
+  cs3:
+    container_name: cs3
+    depends_on:
+      - ssbotmq
+    build:
+      context: .
+      dockerfile: Dockerfile.consumer
+    image: ssbot:latest
+    command: [ "bash", "ssbotmq:5672", "--", "node", "consumer.js", "consumer3i5" ]
+    restart: always
+    env_file:
+      - ./.env
+    networks:
+      - ssbot

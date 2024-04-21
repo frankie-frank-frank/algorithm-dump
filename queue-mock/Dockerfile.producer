@@ -1,0 +1,24 @@
+FROM node:20.5
+ENV NODE_ENV=dev
+ENV PORT=3005
+
+WORKDIR /app
+COPY package.json .
+COPY tsconfig.json .
+COPY package-lock.json .
+RUN npm install
+
+COPY src .
+RUN apt-get update \
+    && apt-get install -y bash \
+    && apt-get clean \
+    && npm run start:build \
+    && rm -rf src && cp -r dist/* . \
+    && rm -rf dist \
+    && apt update \
+    && apt install chromium chromium-driver -y \
+    && apt clean
+
+EXPOSE ${PORT}
+
+CMD ["node", "producer.js"]
