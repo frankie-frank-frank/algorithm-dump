@@ -7,8 +7,8 @@ services:
     container_name: ssbotmq
     image: "rabbitmq:3-management"
     environment:
-      - MQ_USER=heatmap
-      - MQ_PASS=94wwQ<3WrO+K
+      - RABBITMQ_DEFAULT_USER=heatmap
+      - RABBITMQ_DEFAULT_PASS=94wwQ<3WrO+K
     ports:
       - "15700:15672"
       - "5673:5672"
@@ -32,7 +32,7 @@ services:
       context: .
       dockerfile: Dockerfile.producer
     image: ssbot:latest
-    command: ["bash", "ssbotmq:5672", "--", "node", "producer.js", "producer"]
+    command: ["bash", "/app/wait.sh", "ssbotmq:5672", "--", "node", "producer.js", "producer"]
     restart: always
     env_file:
       - ./.env
@@ -47,7 +47,7 @@ services:
       context: .
       dockerfile: Dockerfile.consumer
     image: ssbot:latest
-    command: [ "bash", "ssbotmq:5672", "--", "node", "consumer.js", "consumer1i5" ]
+    command: [ "bash", "/app/wait.sh", "ssbotmq:5672", "--", "node", "consumer.js", "consumer1i5" ]
     restart: always
     env_file:
       - ./.env
@@ -62,7 +62,7 @@ services:
       context: .
       dockerfile: Dockerfile.consumer
     image: ssbot:latest
-    command: [ "bash", "ssbotmq:5672", "--", "node", "consumer.js", "consumer2i5" ]
+    command: [ "bash", "/app/wait.sh", "ssbotmq:5672", "--", "node", "consumer.js", "consumer2i5" ]
     restart: always
     env_file:
       - ./.env
@@ -77,7 +77,7 @@ services:
       context: .
       dockerfile: Dockerfile.consumer
     image: ssbot:latest
-    command: [ "bash", "ssbotmq:5672", "--", "node", "consumer.js", "consumer3i5" ]
+    command: [ "bash", "/app/wait.sh", "ssbotmq:5672", "--", "node", "consumer.js", "consumer3i5" ]
     restart: always
     env_file:
       - ./.env

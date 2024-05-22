@@ -5,6 +5,7 @@ ENV PORT=3005
 WORKDIR /app
 COPY package.json .
 COPY tsconfig.json .
+COPY wait.sh .
 COPY package-lock.json .
 RUN npm install
 
