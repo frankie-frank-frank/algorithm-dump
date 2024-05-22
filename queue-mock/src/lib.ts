@@ -1,6 +1,5 @@
 import mysql, { Pool } from "mysql2";
 import * as dotenv from 'dotenv';
-import { createBotTable } from "./db";
 
 dotenv.config();
 
