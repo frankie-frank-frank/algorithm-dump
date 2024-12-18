@@ -1,0 +1,50 @@
+[
+  {
+    "id": 0,
+    "idsite": 285,
+    "url": "https://cadenlane.com",
+    "warningLevel": "SEVERE",
+    "message": "Sandbox access violation: Blocked a frame at 'https://cadenlane.com' from accessing a frame at 'https://cadenlane.com'.  The frame being accessed is sandboxed and lacks the 'allow-same-origin' flag.",
+    "explanation": "This error message is telling you that there is a security issue with your webpage. It means that a part of your website is trying to access another part of the website, but it is being blocked because of security restrictions. This is happening because one part of the website is in a type of security mode called a sandbox, which doesn't allow it to interact with other parts of the website without special permission. The error message is essentially saying that the sandboxed part of the website is trying to break out of its restricted mode, but it is being prevented from doing so to protect the website from potential security threats. This issue will need to be addressed by adjusting the security settings on your website to ensure that all parts can work together safely.",
+    "status": "INITIAL",
+    "count": 1,
+    "server_date": "2024-04-23T18:12:10.111Z",
+    "method": "logBotLogs"
+  },
+  {
+    "id": 1,
+    "idsite": 1808,
+    "url": "https://vicicollection.com",
+    "warningLevel": "SEVERE",
+    "message": "window.OneSignal already defined as 'function'!Please make sure to define as 'window.OneSignal = window.OneSignal || [];'",
+    "explanation": "This message is telling you that there is a problem with the way a certain function is defined on your webpage. It is saying that the function 'OneSignal' has already been defined in a conflicting way. To fix this issue, you need to specify how 'OneSignal' should be defined so that it works correctly. You can do this by adding 'window.OneSignal = window.OneSignal || [];' in your webpage's console with a severity level of SEVERE. This will ensure that 'OneSignal' is defined properly and resolves any conflicts that may be causing issues on your webpage. It's important to address this problem to ensure that your webpage functions properly.",
+    "status": "INITIAL",
+    "count": 1,
+    "server_date": "2024-04-23T18:12:13.193Z",
+    "method": "logBotLogs"
+  },
+  {
+    "id": 2,
+    "idsite": 1388,
+    "url": "https://vegas.hu",
+    "warningLevel": "SEVERE",
+    "message": "Failed to load resource: the server responded with a status of 404 ()",
+    "explanation": "This message indicates that the webpage was not able to find a specific resource that it needed to load. The resource could be an image, script, or file that the webpage relies on to function properly. The server responded with a status of 404, which means that it could not locate the requested resource. This can happen if the resource has been moved, deleted, or renamed. As a result, the webpage may not display or function as expected. The issue will need to be resolved by updating the webpage to correctly reference the missing resource.",
+    "status": "INITIAL",
+    "count": 1,
+    "server_date": "2024-04-23T18:12:15.699Z",
+    "method": "logBotLogs"
+  },
+  {
+    "id": 3,
+    "idsite": 1388,
+    "url": "https://vegas.hu",
+    "warningLevel": "SEVERE",
+    "message": "Unhandled Promise Rejection: NoAvailableSessionException.",
+    "explanation": "This error message means that a request for a particular session is unable to be fulfilled. In simpler terms, it's like trying to access a specific room that is currently unavailable or doesn't exist. The webpage is expecting a session to be available but it is not, causing the error to be displayed. This could be due to a variety of reasons such as a technical issue or a bug in the code. The severity level of \"SEVERE\" indicates that this error is significant and needs attention to fix it. It is important to investigate and address this issue to ensure the webpage functions correctly.",
+    "status": "INITIAL",
+    "count": 1,
+    "server_date": "2024-04-23T18:12:18.520Z",
+    "method": "logBotLogs"
+  }
+]
