@@ -19,11 +19,11 @@ export default async function consumeMessages() {
     const connection = await amqplib.connect(AMQP_URL);
     const channel = await connection.createChannel();
     await channel.assertQueue(QUEUE_NAME, { durable: true });
-    channel.prefetch(4);
+    channel.prefetch(1);
     console.log(`Connected to RabbitMQ`);
     console.log(`Consuming messages from the queue: ${QUEUE_NAME}`);
 
-    const db: Pool = connectToDatabase();
+    // const db: Pool = connectToDatabase();
     channel.consume(QUEUE_NAME, async (msg) => {
       console.log('message: ', msg)
       if (msg !== null) {
@@ -32,7 +32,7 @@ export default async function consumeMessages() {
         console.log(`Received message: ${messageContent}`);
         const { idsitehsr } = (JSON.parse(messageContent)) as any;
         await delay(60 * 1000)
-        await markSiteHsrAsProcessed(db, idsitehsr)
+        // await markSiteHsrAsProcessed(db, idsitehsr)
       } else if (msg === null) {
         console.log("no message published");
       }
