@@ -13,7 +13,10 @@ const RABBITMQ_PORT = process.env.MQ_PORT!;
 
 const AMQP_URL = `amqp://${RABBITMQ_USERNAME}:${RABBITMQ_PASSWORD}@${RABBITMQ_HOST}:${RABBITMQ_PORT}`;
 
-export async function batchInsert(fetchTenRecentIdSitesInput: number[], channel: amqplib.Channel, db: Pool): Promise<boolean|"error"> {
+export async function batchInsert(fetchTenRecentIdSitesInput: number[]): Promise<boolean|"error"> {
+    let channel = await queueGen()
+    channel.assertQueue(QUEUE_NAME, { durable: true });    
+
     try {
         const assertQueue = await channel.checkQueue(QUEUE_NAME);
         const queueLength = assertQueue.messageCount;
@@ -21,7 +24,6 @@ export async function batchInsert(fetchTenRecentIdSitesInput: number[], channel:
         if (queueLength < 80) { // expect an operational capacity of 100 idsites as if it hits below 80 and we insert 20, we can expect a ceiling of 100 in queue
             for(const idsitehsr of fetchTenRecentIdSitesInput) {
                 try {
-                    await acknowledgeIdsite(db, idsitehsr);
                     channel.sendToQueue(
                         QUEUE_NAME,
                         Buffer.from(JSON.stringify({ idsitehsr }))
@@ -36,7 +38,10 @@ export async function batchInsert(fetchTenRecentIdSitesInput: number[], channel:
         }
     }  catch (e: any) {
         return 'error'
+    } finally {
+        await channel.close()
     }
+
 }
 
 export const queueGen = async (): Promise<amqplib.Channel> => {
